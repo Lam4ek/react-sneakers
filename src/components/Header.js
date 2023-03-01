@@ -7,10 +7,7 @@ function Header({ onClickCart }) {
 
   return (
     <header>
-      <Link
-        path={process.env.PUBLIC_URL + "/"}
-        to={process.env.PUBLIC_URL + "/"}
-      >
+      <Link to="/">
         <div className="header-logo">
           <img width={40} height={40} src="/img/logo.svg" alt="logo" />
           <div className="header-info">
@@ -34,10 +31,7 @@ function Header({ onClickCart }) {
           </li>
 
           <li style={{ marginLeft: "30px" }}>
-            <Link
-              path={process.env.PUBLIC_URL + "/favorites"}
-              to={process.env.PUBLIC_URL + "/favorites"}
-            >
+            <Link to="/favorites">
               <img
                 width={20}
                 height={20}
@@ -47,10 +41,7 @@ function Header({ onClickCart }) {
             </Link>
           </li>
           <li style={{ marginLeft: "30px" }}>
-            <Link
-              path={process.env.PUBLIC_URL + "/orders"}
-              to={process.env.PUBLIC_URL + "/orders"}
-            >
+            <Link to="/orders">
               <img
                 width={20}
                 height={20}

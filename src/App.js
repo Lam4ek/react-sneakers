@@ -137,7 +137,7 @@ function App() {
         <Header onClickCart={() => setCartOpened(!cartOpened)} />
         <Routes>
           <Route
-            path="/"
+            path=""
             element={
               <Home
                 items={items}
@@ -150,8 +150,8 @@ function App() {
               />
             }
           ></Route>
-          <Route path="/favorites" element={<Favorites />}></Route>
-          <Route path="/orders" element={<Orders />}></Route>
+          <Route path="favorites" element={<Favorites />}></Route>
+          <Route path="orders" element={<Orders />}></Route>
         </Routes>
       </div>
     </AppContext.Provider>
