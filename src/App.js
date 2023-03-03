@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import Orders from "./pages/Orders";
 import AppContext from "./context";
+import MainLayout from "./components/MainLayout";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -135,24 +136,30 @@ function App() {
               setCartOpened={setCartOpened}
             />
           )}
-          <Header onClickCart={() => setCartOpened(!cartOpened)} />
           <Routes>
             <Route
-              path=""
+              path="/"
               element={
-                <Home
-                  items={items}
-                  cartItems={cartItems}
-                  searchValue={searchValue}
-                  onChengeSearch={onChengeSearch}
-                  onAddToCart={onAddToCart}
-                  onAddToFavorite={onAddToFavorite}
-                  isLoading={isLoading}
-                />
+                <MainLayout onClickCart={() => setCartOpened(!cartOpened)} />
               }
-            ></Route>
-            <Route path="favorites" element={<Favorites />}></Route>
-            <Route path="orders" element={<Orders />}></Route>
+            >
+              <Route
+                index
+                element={
+                  <Home
+                    items={items}
+                    cartItems={cartItems}
+                    searchValue={searchValue}
+                    onChengeSearch={onChengeSearch}
+                    onAddToCart={onAddToCart}
+                    onAddToFavorite={onAddToFavorite}
+                    isLoading={isLoading}
+                  />
+                }
+              ></Route>
+              <Route path="favorites" element={<Favorites />}></Route>
+              <Route path="orders" element={<Orders />}></Route>
+            </Route>
           </Routes>
         </div>
       </AppContext.Provider>
