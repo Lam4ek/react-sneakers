@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from "axios";
 
 import Header from "./components/Header";
@@ -109,52 +109,54 @@ function App() {
   };
 
   return (
-    <AppContext.Provider
-      value={{
-        items,
-        cartItems,
-        favoriteItems,
-        isItemAdded,
-        onAddToFavorite,
-        onAddToCart,
-        setCartOpened,
-        setCartItems,
-      }}
-    >
-      <div className="wrapper">
-        {cartOpened && (
-          <Drawer
-            onCloseCart={() => {
-              setCartOpened(!cartOpened);
-            }}
-            items={cartItems}
-            onRemove={onRemoveCart}
-            setCartItems={setCartItems}
-            opened={cartOpened}
-            setCartOpened={setCartOpened}
-          />
-        )}
-        <Header onClickCart={() => setCartOpened(!cartOpened)} />
-        <Routes>
-          <Route
-            path=""
-            element={
-              <Home
-                items={items}
-                cartItems={cartItems}
-                searchValue={searchValue}
-                onChengeSearch={onChengeSearch}
-                onAddToCart={onAddToCart}
-                onAddToFavorite={onAddToFavorite}
-                isLoading={isLoading}
-              />
-            }
-          ></Route>
-          <Route path="favorites" element={<Favorites />}></Route>
-          <Route path="orders" element={<Orders />}></Route>
-        </Routes>
-      </div>
-    </AppContext.Provider>
+    <BrowserRouter>
+      <AppContext.Provider
+        value={{
+          items,
+          cartItems,
+          favoriteItems,
+          isItemAdded,
+          onAddToFavorite,
+          onAddToCart,
+          setCartOpened,
+          setCartItems,
+        }}
+      >
+        <div className="wrapper">
+          {cartOpened && (
+            <Drawer
+              onCloseCart={() => {
+                setCartOpened(!cartOpened);
+              }}
+              items={cartItems}
+              onRemove={onRemoveCart}
+              setCartItems={setCartItems}
+              opened={cartOpened}
+              setCartOpened={setCartOpened}
+            />
+          )}
+          <Header onClickCart={() => setCartOpened(!cartOpened)} />
+          <Routes>
+            <Route
+              path=""
+              element={
+                <Home
+                  items={items}
+                  cartItems={cartItems}
+                  searchValue={searchValue}
+                  onChengeSearch={onChengeSearch}
+                  onAddToCart={onAddToCart}
+                  onAddToFavorite={onAddToFavorite}
+                  isLoading={isLoading}
+                />
+              }
+            ></Route>
+            <Route path="favorites" element={<Favorites />}></Route>
+            <Route path="orders" element={<Orders />}></Route>
+          </Routes>
+        </div>
+      </AppContext.Provider>
+    </BrowserRouter>
   );
 }
 
